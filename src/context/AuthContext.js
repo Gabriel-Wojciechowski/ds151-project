@@ -68,11 +68,17 @@ const AuthProvider = ({children}) => {
     
   }
 
+  const signOut = async() => {
+    dispatch({type:'signOut'});
+    RootNavigation.navigate('Login');
+  }
+
   return(
     <AuthContext.Provider value={{
       authState,
       signIn,
-      tryLocalSignIn
+      tryLocalSignIn,
+      signOut
     }}>
       {children}
     </AuthContext.Provider>

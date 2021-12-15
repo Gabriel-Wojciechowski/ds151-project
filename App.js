@@ -10,13 +10,14 @@ import HomeScreen from './src/screens/HomeScreen';
 import FullListScreen from './src/screens/FullListScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
 import ProfileScreen from './src/screens/ProfileScreen.js';
+import SignOutScreen from './src/screens/SignOutScreen.js';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createMaterialTopTabNavigator();
 
 function App() {
-  return (                                                                                // 24:25
+  return (
     <AuthProvider>
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator>
@@ -31,9 +32,10 @@ function App() {
 
 const DrawerTabsScreen = () => {
   return(
-    <Drawer.Navigator initialRouteName="GitLab Example Project">
-      <Drawer.Screen name="GitLab Example Project" component={TabsScreen} />
+    <Drawer.Navigator initialRouteName="GitLab Application">
+      <Drawer.Screen name="GitLab Application" component={TabsScreen} />
       <Drawer.Screen name="Profile" component={ProfileScreen} />
+      <Drawer.Screen options={{headerShown:false}} name="Sign Out" component={SignOutScreen} />
     </Drawer.Navigator>
   );
 }

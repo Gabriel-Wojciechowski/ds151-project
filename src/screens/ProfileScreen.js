@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Linking, ScrollView, View } from 'react-native';
-import { Text, Button, Divider } from 'react-native-elements';
+import { Text, Button } from 'react-native-elements';
 import DefaultImage from '../components/DefaultImage';
 import gitlab from '../api/gitlab';
 
@@ -19,10 +19,10 @@ const ProfileScreen = ({ navigation, route }) => {
   return(
     <>
       <ScrollView contentContainerStyle={styles.view}>
-        {item.avatar_url && <DefaultImage borderRadius={25} uri={item.avatar_url}/>}
+        {item.avatar_url && <View style={styles.image}><DefaultImage borderRadius={75} size={75} uri={item.avatar_url}/></View>}
         <Text style={styles.item}>{item.name}</Text>
         <View style = {styles.lineStyle} />
-        <Text style={styles.item}>@{item.username}</Text>
+        {item.username && <Text style={styles.item}>@{item.username}</Text>}
         <Text style={styles.item}>{item.bio}</Text>
         <Text style={styles.item}>{item.email}</Text>
         <Text style={styles.item}>{item.twitter}</Text>
@@ -32,7 +32,7 @@ const ProfileScreen = ({ navigation, route }) => {
         </View>
       </ScrollView>
       <Button 
-        title="Acessar perfil"
+        title="Access profile"
         onPress={() => Linking.openURL(item.web_url)}/>
     </>
   )
@@ -43,14 +43,14 @@ const styles = StyleSheet.create({
     margin: 10,
     alignItems: 'center',
   },
+  image: {
+    margin: 10,
+  },
   lineStyle:{
     width: '75%',
     borderWidth: 0.5,
     borderColor:'gray',
     margin:10,
-  },
-  img: {
-    borderRadius: 25,
   },
   item: {
     margin: 4
@@ -59,9 +59,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     borderWidth: 1,
     borderRadius: 8,
-    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
   },
   followerBoxItem:{
     margin:8,

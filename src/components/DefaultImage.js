@@ -1,22 +1,19 @@
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 
-const DefaultImage = ({uri, borderRadius}) => {
+const DefaultImage = ({uri, borderRadius, size}) => {
   return(
     <Image
-      style={[styles.image, {borderRadius: borderRadius}]}
+      style={{
+        borderRadius, 
+        height: size, 
+        width: size
+      }}
       source={{
         uri
       }}
     />
   );
 }
-
-const styles = StyleSheet.create({
-  image: {
-    height: 50,
-    width: 50,
-  }
-});
 
 export default DefaultImage;

@@ -1,24 +1,47 @@
 import React, {useEffect, useState} from 'react';
 import { Text } from 'react-native-elements';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import gitlab from '../api/gitlab';
 
-const StarCount = ({count, size, id}) => {
+const StarCount = ({count, fontSize, id}) => {
   const [starred, setStarred] = useState(false);
   const [stars, setStars] = useState(0);
 
   useEffect(() => {
     setStars(count);
+    checkStarred(id);
   }, []);
+
+  async function checkStarred(){
+    const response = await gitlab.get(`/projects?starred=true`);
+    setStarred(false);
+    response.data.forEach(element => {
+      if(id === element.id)
+        setStarred(true);
+    });
+  }
   
-  function flipStar(){
-    if(!starred) {
-      setStars(stars+1);            // não deu pra fazer ele realmente mudar no gitlab pela api, desculpa :c
-    } else {
-      setStars(stars-1);
+  async function flipStar(){
+    try{
+      if(!starred) {
+        await gitlab.post(`/projects/${id}/star`);
+        setStars(stars+1);
+      } else {
+        await gitlab.post(`/projects/${id}/unstar`);
+        setStars(stars-1);
+      }
+      setStarred(!starred);
+    } catch(e) {
+      if(e.response.status == 304){
+        if(!starred) {
+          setStars(stars+1);
+        } else {
+          setStars(stars-1);
+        }
+        setStarred(!starred);
+      }
     }
-    setStarred(!starred);
   }
 
   return(
@@ -26,7 +49,7 @@ const StarCount = ({count, size, id}) => {
       style={styles.star}
       onPress={() => flipStar()}
     >
-      <Text style={[styles.starNumber, {fontSize: size}]}>{stars}</Text>
+      <Text style={[styles.starNumber, {fontSize}]}>{stars}</Text>
       {starred ? <FontAwesome name="star" size={24} color="black" /> : <FontAwesome name="star-o" size={24} color="black" />}
     </TouchableOpacity>
   );

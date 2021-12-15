@@ -29,7 +29,7 @@ const HomeScreen = ({ navigation }) => {
                 })}
                 style={styles.item}
               >
-                <DefaultImage  borderRadius={8} uri={item.avatar_url}/>
+                {item.avatar_url && <DefaultImage borderRadius={8} size={50} uri={item.avatar_url}/>}
                 <View style={styles.itemText}>
                   <Text>{item.name_with_namespace}</Text>
                   <Text>Visibility: {item.visibility}</Text>
@@ -44,12 +44,6 @@ const HomeScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-  searchButton: {
-    borderWidth: 1.5,
-    borderRadius: 25,
-    padding: 8,
-    margin: 10
-  },
   item:{
     margin: 8,
     borderWidth: 1,
