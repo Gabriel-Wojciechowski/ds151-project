@@ -7,8 +7,11 @@ import StarCount from '../components/StarCount';
 import SearchBar from '../components/SearchBar';
 import gitlab from '../api/gitlab';
 import { Dropdown } from 'react-native-element-dropdown';
+import { useIsFocused } from "@react-navigation/native";
 
 const FullListScreen = ({ navigation }) => {
+  const isFocused = useIsFocused();
+
   const [isLoading, setIsLoading] = useState(true);
   const [results, setResults] = useState([]);
   const [text, setText] = useState('');
@@ -23,11 +26,13 @@ const FullListScreen = ({ navigation }) => {
   ]);
 
   useEffect(() => { 
-    getProjects("", "updated_at");
-  }, []);
+    if(isFocused){
+      setIsLoading(true);
+      getProjects("", "updated_at");
+    }
+  }, [isFocused]);
 
   async function getProjects(query, opt){
-    console.log(`/projects?search=${query}&order_by=${opt}&page=1&per_page=20`);
     const response = await gitlab.get(`/projects?search=${query}&order_by=${opt}`);
     setResults(response.data);
     setIsLoading(false);
