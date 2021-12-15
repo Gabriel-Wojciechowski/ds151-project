@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Linking, ScrollView, View } from 'react-native';
+import { StyleSheet, Linking, ScrollView, View, TouchableOpacity } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import DefaultImage from '../components/DefaultImage';
 import gitlab from '../api/gitlab';
@@ -31,9 +31,13 @@ const ProfileScreen = ({ navigation, route }) => {
           <Text style={styles.followerBoxItem}>{item.following} following</Text>
         </View>
       </ScrollView>
-      <Button 
-        title="Access profile"
-        onPress={() => Linking.openURL(item.web_url)}/>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => Linking.openURL(item.web_url)}>
+        <Text style={styles.text}>
+          Access profile
+        </Text>  
+      </TouchableOpacity>
     </>
   )
 }
@@ -65,7 +69,21 @@ const styles = StyleSheet.create({
     margin:8,
     marginLeft: 15,
     marginRight: 15
-  }
+  },
+  button:{
+    width: 150,
+    padding: 15,
+    backgroundColor: 'black',
+    borderRadius: 10,
+    alignSelf: 'center',
+    alignItems:'center',
+    marginBottom:25,
+  },
+  text:{
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',    
+  },
 });
 
 export default ProfileScreen;

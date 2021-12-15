@@ -31,10 +31,9 @@ const HomeScreen = ({ navigation }) => {
               >
                 {item.avatar_url && <DefaultImage borderRadius={8} size={50} uri={item.avatar_url}/>}
                 <View style={styles.itemText}>
-                  <Text>{item.name_with_namespace}</Text>
-                  <Text>Visibility: {item.visibility}</Text>
+                  <Text style={{fontSize: 16, fontWeight: 'bold'}}>{item.name_with_namespace}</Text>
+                  <Text style={{fontSize: 14}}>Visibility: {item.visibility}</Text>
                 </View>
-
               </TouchableOpacity>
           );
         }}
@@ -45,11 +44,17 @@ const HomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   item:{
-    margin: 8,
+    marginTop:10,
+    marginBottom:3,
+    marginHorizontal: 10,
+    paddingTop: 7,
+    paddingBottom: 7,
+    borderRightColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderTopColor: '#CCC',
+    borderBottomColor: '#CCC',
     borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   itemText:{
     flex: 1,

@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList } from 'react-native-web';
@@ -35,12 +35,12 @@ const LoginScreen = ({navigation}) => {
           value={password}
           secureTextEntry={true}
         />
-        <Pressable
+        <TouchableOpacity
           style={styles.button}          
           onPress={() => {
             signIn({username, password});
           }}
-        ><Text style={styles.text}>Entrar</Text></Pressable>
+        ><Text style={styles.text}>Entrar</Text></TouchableOpacity>
         {authState.error ? <Text style={styles.errorText}>{authState.error}</Text> : null} 
     </SafeAreaView>
   );
@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: 'black',
     borderRadius: 10,
-    alignItems: 'center'
+    alignItems: 'center',
+    alignItems:'center',
   },
   text:{
     color: 'white',

@@ -74,8 +74,8 @@ const FullListScreen = ({ navigation }) => {
                 >
                   {item.avatar_url && <DefaultImage borderRadius={8} size={50} uri={item.avatar_url}/>}
                   <View style={styles.itemText}>
-                    <Text>{item.name_with_namespace}</Text>
-                    <Text>Last updated at: {Moment(item.last_activity_at).format('DD/MM/yyyy')}</Text>
+                    <Text style={{fontSize: 16, fontWeight: 'bold'}}>{item.name_with_namespace}</Text>
+                    <Text style={{fontSize: 14}}>Last updated at: {Moment(item.last_activity_at).format('DD/MM/yyyy')}</Text>
                   </View>
                   <StarCount count={item.star_count} size={16} id={item.id} back={true}/>
 
