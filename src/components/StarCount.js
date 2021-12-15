@@ -50,7 +50,7 @@ const StarCount = ({count, fontSize, id}) => {
       onPress={() => flipStar()}
     >
       <Text style={[styles.starNumber, {fontSize}]}>{stars}</Text>
-      {starred ? <FontAwesome name="star" size={24} color="black" /> : <FontAwesome name="star-o" size={24} color="black" />}
+      {starred ? <FontAwesome name="star" size={24} color="gold" /> : <FontAwesome name="star-o" size={24} color="white" />}
     </TouchableOpacity>
   );
 }
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   starNumber: {
     padding: 5,
+    color:'white'
   }
 });
 

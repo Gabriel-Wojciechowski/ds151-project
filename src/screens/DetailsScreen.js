@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Linking, ScrollView, View, FlatList, LogBox } from 'react-native';
+import { StyleSheet, Linking, ScrollView, View, FlatList, LogBox, TouchableOpacity } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import { Dropdown } from 'react-native-element-dropdown';
 import Moment from 'moment';
@@ -38,15 +38,18 @@ const DetailsScreen = ({ navigation, route }) => {
     <>
       <ScrollView style={styles.view}>
         <View style={styles.topFlex}>
-         {item.avatar_url && <DefaultImage borderRadius={8} size={50} uri={item.avatar_url}/>}
-         {typeof(item.star_count) !== 'undefined' && <StarCount count={item.star_count} size={24} id={item.id}/>}
+          <Text style={{fontSize: 20, fontWeight:"bold", color: 'white', flex: 1, paddingRight: 15}}>{item.name}</Text>
+          {item.avatar_url && <DefaultImage borderRadius={8} size={50} uri={item.avatar_url}/>}
+          {typeof(item.star_count) !== 'undefined' && <StarCount count={item.star_count} size={24} id={item.id}/>}
         </View>
-        <Text style={styles.item}><B>Name:</B> {item.name}</Text>
-        <Text style={styles.item}><B>Visibility:</B> {item.visibility}</Text>
-        <Text style={styles.item}><B>Created by:</B> {item.namespace.name}</Text>
-        <Text style={styles.item}><B>Created at:</B> {Moment(item.created_at).format('DD MMM yyyy HH:mm:ss')}</Text>
-        <Text style={styles.item}><B>Last updated at:</B> {Moment(item.last_activity_at).format('DD MMM yyyy HH:mm:ss')}</Text>
+        <View style={{padding: 15, marginBottom: 10, marginTop: 10, backgroundColor: '#DDD', borderRadius: 7}}>
+          <Text style={styles.item}><B>Created by:</B> {item.namespace.name}</Text>
+          <Text style={styles.item}><B>Visibility:</B> {item.visibility}</Text>
+          <Text style={styles.item}><B>Created at:</B> {Moment(item.created_at).format('DD MMM yyyy HH:mm:ss')}</Text>
+          <Text style={styles.item}><B>Last updated at:</B> {Moment(item.last_activity_at).format('DD MMM yyyy HH:mm:ss')}</Text>
+        </View>        
         <Dropdown
+          style={{marginBottom:10}}
           data={branches}
           labelField={"name"}
           valueField={"name"}
@@ -59,7 +62,7 @@ const DetailsScreen = ({ navigation, route }) => {
         />
         {isLoading ? <Text style={styles.loading}>Loading...</Text> :
           <View style={styles.item}>
-            <B>Last commits</B>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>Last commits:</Text>
             <FlatList
               data={commits}
               keyExtractor={item => item.id.toString()}
@@ -67,7 +70,7 @@ const DetailsScreen = ({ navigation, route }) => {
               renderItem={({ item }) => {
                 return(
                   <View style={styles.commitItem}>
-                    <Text>{item.title}</Text>
+                    <Text style={{fontSize: 18, marginBottom: 5, fontWeight:'600'}}>{item.title}</Text>
                     <Text><B>By:</B> {item.committer_name}</Text>
                   </View>
                 );
@@ -76,10 +79,11 @@ const DetailsScreen = ({ navigation, route }) => {
           </View>
         }
       </ScrollView>
-      <Button 
-        style={styles.item}
-        title="Access project"
-        onPress={() => Linking.openURL(item.web_url)}/>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => Linking.openURL(item.web_url)}>
+        <Text style={{fontSize: 17, color: 'white'}}>Access Project</Text>
+      </TouchableOpacity>
     </>
   )
 }
@@ -89,13 +93,19 @@ const styles = StyleSheet.create({
     margin: 10
   },
   item: {
-    margin: 4
+    margin: 4,
+    fontSize: 17
   },
   commitItem: {
-    margin: 4,
-    padding: 5,
+    marginTop:7,
+    marginBottom:3,
+    paddingTop: 7,
+    paddingBottom: 7,
+    borderRightColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderTopColor: '#CCC',
+    borderBottomColor: '#CCC',
     borderWidth: 1,
-    borderRadius: 8,
   },
   dropdown: {
     height: 50,
@@ -109,12 +119,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: 4
+    margin: 4,
+    backgroundColor: 'black', 
+    padding: 15, 
+    borderRadius: 7
   },
   loading:{
     flex: 1,
     alignSelf: 'center'
-  }
+  },
+  button:{
+    width: 150,
+    padding: 15,
+    backgroundColor: 'black',
+    borderRadius: 10,
+    alignSelf: 'center',
+    marginBottom:25,
+  },
 });
 
 export default DetailsScreen;
