@@ -61,7 +61,7 @@ const AuthProvider = ({children}) => {
       });
       await AsyncStorage.setItem('access_token', response.data.access_token);
       dispatch({type: 'signIn', payload: response.data.access_token});
-      RootNavigation.navigate("DrawerTabs");
+      RootNavigation.navigate("Splash");
     } catch(e){
       dispatch({type:'error', payload: 'Erro na autenticação do usuário.'})
     }
@@ -69,8 +69,9 @@ const AuthProvider = ({children}) => {
   }
 
   const signOut = async() => {
+    await AsyncStorage.removeItem('access_token');
     dispatch({type:'signOut'});
-    RootNavigation.navigate('Login');
+    RootNavigation.navigate('Splash');
   }
 
   return(
