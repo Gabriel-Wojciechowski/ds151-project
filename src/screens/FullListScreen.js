@@ -77,7 +77,7 @@ const FullListScreen = ({ navigation }) => {
                     <Text>{item.name_with_namespace}</Text>
                     <Text>Last updated at: {Moment(item.last_activity_at).format('DD/MM/yyyy')}</Text>
                   </View>
-                  <StarCount count={item.star_count} size={16} id={item.id}/>
+                  <StarCount count={item.star_count} size={16} id={item.id} back={true}/>
 
                 </TouchableOpacity>
             );
@@ -96,11 +96,17 @@ const styles = StyleSheet.create({
     margin: 10
   },
   item:{
-    margin: 8,
+    marginTop:7,
+    marginBottom:3,
+    marginHorizontal: 10,
+    paddingTop: 7,
+    paddingBottom: 7,
+    borderRightColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderTopColor: '#CCC',
+    borderBottomColor: '#CCC',
     borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   itemText:{
     flex: 1,
