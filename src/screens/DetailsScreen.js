@@ -16,6 +16,7 @@ const DetailsScreen = ({ navigation, route }) => {
   const [branches, setBranches] = useState([]);
 
   useEffect(() => {    
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     getProject(route.params.id);
     getCommits(route.params.id, "");
   }, []);
