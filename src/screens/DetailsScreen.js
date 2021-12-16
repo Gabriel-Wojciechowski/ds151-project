@@ -53,6 +53,8 @@ const DetailsScreen = ({ navigation, route }) => {
           data={branches}
           labelField={"name"}
           valueField={"name"}
+          search
+          maxHeight={60+(60*branches.length)}
           onChange={(item) => {
             setIsLoading(true);
             getCommits(route.params.id, item.name);
@@ -75,6 +77,7 @@ const DetailsScreen = ({ navigation, route }) => {
                   </View>
                 );
               }}
+              style={{marginBottom: 80}}
             />
           </View>
         }
@@ -90,7 +93,7 @@ const DetailsScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   view: {
-    margin: 10
+    margin: 10,
   },
   item: {
     margin: 4,
@@ -129,6 +132,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   button:{
+    bottom: 1,
+    position: 'absolute',
     width: 150,
     padding: 15,
     backgroundColor: 'black',
