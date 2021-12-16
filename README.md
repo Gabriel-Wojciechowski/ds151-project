@@ -6,22 +6,26 @@ Universidade Federal do Paraná - UFPR
 
 ---
 
-*DS151 - Desenvolvimento para Dispositivos Móveis*
+**Especificação do Trabalho Prático**
 
-Prof. Alexander Robert Kutzke
+Objetivo: Desenvolver um aplicativo utilizando React Native e os conteúdos vistos durante a disciplina.
 
-* [Instruções para submissão de tarefas e trabalhos](https://gitlab.tadsufpr.net.br/ds122-alexkutzke/material/blob/master/instrucoes_submissao_tarefas_e_trabalhos.md)
-* [Video aula](https://www.youtube.com/watch?v=d6ZTnQNhoCo)
+Requisitos:
 
-# Atividade Gitlab
+    Utilizar componentes funcionais e Hooks;
+    Comunicar com uma API externa (criada por vocês ou disponibilizada por terceiros);
+    Possuir algum tipo de autenticação de usuário atrelada à API;
+    Impressionar o professor :)
 
-Crie uma aplicação com o Expo (já inicializada nesse repositório) que se comunique com a api do gitlab.com (mais informações https://gitlab.com/help/api/README.md) e que atenda aos seguintes requisitos:
+O projeto deve ser disponibilizado em um repositório no gitlab do TADS e ter todos os membros do grupo cadastrados como desenvolvedores nesse projeto (utilizar o interface do Gitlab para isso).
 
-- Realizar autenticação na API acima;
-- Persistir o login (`access_token`) por meio de `AsyncStorare`;
-- Tenha uma navegação aninhada com `NavigationDrawer` (e outros navegadores que achar interessante):
-  - O Botão de logout deve estar no `NavigationDrawer`;
-- Utilizar elementos de interface da biblioteca React Native Elements;
-- Realizar requisições na API acima para apresentar dados do usuário logado.
+Como informado no Plano de Ensino, a avaliação do trabalho será dividida em duas partes:
 
-Layout, conteúdos acessados pela aplicação e demais detalhes são livres. ;)
+    Análise do código fonte;
+    Vídeo de apresentação, com a participação de todos os integrantes do grupo (pode ser apenas voz), demonstrando o Aplicativo em funcionamento.
+
+A nota será diretamente proporcional à complexidade e ao número de telas do Aplicativo desenvolvido.
+
+Data de entrega: 16/12/2021
+
+O projeto deve ser realizado em grupos entre 3 e 5 estudantes.
