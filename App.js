@@ -23,7 +23,7 @@ function App() {
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator>
           <Stack.Screen options={{headerShown:false}} name="Splash" component={SplashScreen} />
-          <Stack.Screen options={{headerLeft: null}} name="Login" component={LoginScreen} />
+          <Stack.Screen options={{headerLeft: null, headerShown:false}} name="Login" component={LoginScreen} />
           <Stack.Screen options={{headerShown:false}} name="DrawerTabs" component={DrawerTabsScreen} />   
           <Stack.Screen name="Project Details" component={DetailsScreen} />
         </Stack.Navigator>
